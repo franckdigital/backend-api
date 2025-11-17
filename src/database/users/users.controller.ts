@@ -23,7 +23,7 @@ import {
 import { UserPermissionsDto } from './dto/user-permissions.dto';
 import { UserPermissionsResponseDto } from './dto/user-permissions-response.dto';
 import { UpdateUserProfileDto } from './dto/update-user-profile.dto';
-import { Public } from 'src/common/guards/global-auth.guard';
+import { Public } from '../../common/guards/global-auth.guard';
 
 @ApiTags('users')
 @ApiBearerAuth('JWT-auth')
