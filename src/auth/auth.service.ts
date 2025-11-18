@@ -99,13 +99,13 @@ export class AuthService {
       : [];
 
     // Generate a unique refresh token using JWT
-    const refreshToken = this.jwtService.sign(
+    const refreshToken = await this.jwtService.signAsync(
       { 
         email: user.email, 
         sub: user.id,
         roleIds: roleIds,
         permissions: user.permissions || []
-      } as const,
+      },
       {
         secret: this.configService.get<string>('jwt.refreshSecret') || 'super-refresh-secret-key',
         expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') || '30d',
