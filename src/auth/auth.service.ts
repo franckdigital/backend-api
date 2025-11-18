@@ -105,7 +105,7 @@ export class AuthService {
         sub: user.id,
         roleIds: roleIds,
         permissions: user.permissions || []
-      },
+      } as const,
       {
         secret: this.configService.get<string>('jwt.refreshSecret') || 'super-refresh-secret-key',
         expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') || '30d',
