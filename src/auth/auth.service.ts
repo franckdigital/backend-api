@@ -496,7 +496,7 @@ export class AuthService {
       accessToken: this.jwtService.sign(payload),
       refreshToken: this.jwtService.sign(payload, {
         secret: this.configService.get<string>('jwt.refreshSecret') || 'super-refresh-secret-key',
-        expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') || '30d',
+        expiresIn: parseInt(this.configService.get<string>('jwt.refreshExpiresIn') || '2592000', 10),
       }),
       user: {
         id: user.id,
