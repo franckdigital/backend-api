@@ -22,7 +22,7 @@ async function main() {
   const userRepo = AppDataSource.getRepository(User);
   const roleRepo = AppDataSource.getRepository(Role);
 
-  const email = "admin2@admin.com";
+  const email = "admin@admin.com";
 
   // Vérifie si l'utilisateur existe déjà
   const existing = await userRepo.findOne({ where: { email }, relations: ["roles"] });
