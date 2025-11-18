@@ -108,7 +108,7 @@ export class AuthService {
       },
       {
         secret: this.configService.get<string>('jwt.refreshSecret') || 'super-refresh-secret-key',
-        expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') || '30d',
+        expiresIn: 60 * 60 * 24 * 30, // 30 jours en secondes
       }
     );
     
@@ -184,7 +184,7 @@ export class AuthService {
       },
       {
         secret: this.configService.get<string>('jwt.refreshSecret') || 'super-refresh-secret-key',
-        expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') || '30d',
+        expiresIn: this.configService.get<number>('jwt.refreshExpiresIn') ?? 60 * 60 * 24 * 30,
       }
     );
     
@@ -352,7 +352,7 @@ export class AuthService {
       accessToken: this.jwtService.sign(payload),
       refreshToken: this.jwtService.sign(payload, {
         secret: this.configService.get<string>('jwt.refreshSecret') || 'super-refresh-secret-key',
-        expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') || '30d',
+        expiresIn: this.configService.get<number>('jwt.refreshExpiresIn') ?? 60 * 60 * 24 * 30,
       }),
       user: {
         id: user.id,
@@ -437,7 +437,7 @@ export class AuthService {
       },
       {
         secret: this.configService.get<string>('jwt.refreshSecret') || 'super-refresh-secret-key',
-        expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') || '30d',
+        expiresIn: this.configService.get<number>('jwt.refreshExpiresIn') ?? 60 * 60 * 24 * 30,
       }
     );
     

@@ -44,14 +44,12 @@ import { RolesModule } from '../database/roles/roles.module';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        return {
-          secret: configService.get<string>('jwt.secret') || 'default-secret-key',
-          signOptions: { 
-            expiresIn: configService.get<string>('jwt.expiresIn') || '1h'
-          }
-        };
-      }
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('jwt.secret') || 'default-secret-key',
+        signOptions: { 
+          expiresIn: parseInt(configService.get<string>('jwt.expiresIn') || '3600', 10) // en secondes
+        }
+      })
     }),
   ],
   controllers: [AuthController],

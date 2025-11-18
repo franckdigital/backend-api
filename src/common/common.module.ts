@@ -16,14 +16,12 @@ import { QueryService } from './services/query.service';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        return {
-          secret: configService.get<string>('jwt.secret') || 'super-secret-key',
-          signOptions: {
-            expiresIn: configService.get<string>('jwt.expiresIn') || '1d',
-          },
-        };
-      },
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('jwt.secret') || 'super-secret-key',
+        signOptions: {
+          expiresIn: parseInt(configService.get<string>('jwt.expiresIn') || '86400', 10) // 24h en secondes
+        }
+      })
     }),
   ],
   providers: [
