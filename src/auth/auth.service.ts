@@ -417,8 +417,7 @@ export class AuthService {
 
     // Verify the refresh token matches
     if (refreshToken !== user.refreshToken) {
-      // If token is invalid, revoke all refresh tokens for security
-      await this.usersService.saveRefreshToken(userId, null);
+      // If token is invalid, just return unauthorized without revoking stored refresh token
       throw new UnauthorizedException('Invalid refresh token 2 ');
     }
 
