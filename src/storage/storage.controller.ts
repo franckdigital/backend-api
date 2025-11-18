@@ -22,7 +22,7 @@ import {
     ApiResponse,
     ApiParam,
 } from '@nestjs/swagger';
-import { Public } from 'src/common/guards/global-auth.guard';
+import { Public } from '../common/guards/global-auth.guard';
 
 @ApiTags('files')
 @Controller('files')
