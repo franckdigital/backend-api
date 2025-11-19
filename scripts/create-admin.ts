@@ -51,7 +51,7 @@ async function main() {
     isActive: true,
     userType: UserType.ADMIN,
     isFirstLogin: true,
-    roles: [adminRole], // ✅ Assigner le rôle admin
+    roles: [adminRole], // ✅ Assigner le rôle admin pour les permissions complètes
     permissions: [],
   });
 
