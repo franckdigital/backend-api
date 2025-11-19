@@ -417,7 +417,13 @@ export class AuthService {
 
     // Verify the refresh token matches
     if (refreshToken !== user.refreshToken) {
-      // If token is invalid, just return unauthorized without revoking stored refresh token
+      // If token is invalid, log detailed information for debugging
+      console.warn('Refresh token mismatch', {
+        userId,
+        receivedRefreshToken: refreshToken,
+        storedRefreshToken: user.refreshToken,
+      });
+      // Just return unauthorized without revoking stored refresh token
       throw new UnauthorizedException('Invalid refresh token 2 ');
     }
 
